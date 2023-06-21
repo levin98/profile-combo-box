@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders app with profile selector 1`] = `
+<div>
+  <div
+    class="App"
+  >
+    <div>
+      <label
+        for="profile"
+      >
+        Profile: 
+      </label>
+      <select
+        id="profile"
+        name="profile"
+      >
+        <option
+          value="1"
+        >
+          Profile 1
+        </option>
+      </select>
+      <div
+        class="dropdown inline-block ml-3"
+      >
+        <button
+          class="bg-white px-1"
+          data-testid="option-button"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-ellipsis "
+            data-icon="ellipsis"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+        <div
+          class="dropdown-options hidden absolute bg-white"
+        >
+          <button
+            class="px-1"
+          >
+            Add
+          </button>
+          <br />
+          <button
+            class="px-1"
+          >
+            Rename
+          </button>
+          <br />
+          <button
+            class="px-1"
+          >
+            Duplicate
+          </button>
+          <br />
+          <button
+            class="px-1"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

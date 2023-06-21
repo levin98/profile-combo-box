@@ -1,8 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { renderWithProviders } from './utils/tests-utils';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders app with profile selector', () => {
+  const { container } = renderWithProviders(<App />);
+  expect(container).toMatchSnapshot();
 });
