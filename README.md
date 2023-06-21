@@ -1,6 +1,6 @@
 # Profile Selector Combo Box with React and Redux
 
-This project was deployed to Heroku and can be viewed at [https://profile-combo-box-a6ce500babc3.herokuapp.com/](https://profile-combo-box-a6ce500babc3.herokuapp.com/).
+This project was deployed to Netlify and can be viewed at [https://lustrous-babka-004e56.netlify.app/](https://lustrous-babka-004e56.netlify.app/).
 
 ## Available Scripts
 
