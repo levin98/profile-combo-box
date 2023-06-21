@@ -10,6 +10,8 @@ export const profileSlice = createSlice({
         }
     ],
     selectedProfileID: 1,
+    rename: false,
+    renameText: '',
   },
   reducers: {
     add: (state, action) => {
@@ -28,10 +30,16 @@ export const profileSlice = createSlice({
     },
     selectProfile: (state, action) => {
         state.selectedProfileID = action.payload;
+    },
+    setRename: (state, action) => {
+        state.rename = action.payload;
+    },
+    setRenameText: (state, action) => {
+        state.renameText = action.payload;
     }
   },
 })
 
-export const { add, update, remove, selectProfile } = profileSlice.actions
+export const { add, update, remove, selectProfile, setRename, setRenameText } = profileSlice.actions
 
 export default profileSlice.reducer

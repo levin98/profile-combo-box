@@ -1,40 +1,61 @@
-import reducer, { add, update, remove, selectProfile } from './profileSlice'
+import reducer, { add, update, remove, selectProfile, setRename, setRenameText } from './profileSlice'
+
+const initialState = { 
+    profiles: [{ id: 1, name: 'Profile 1' }], 
+    selectedProfileID: 1, 
+    rename: false, 
+    renameText: '',
+}
+
+const initialStateWithMultipleProfiles = {
+    ...initialState,
+    profiles: [{ id: 1, name: 'Profile 1' }, { id: 2, name: 'Profile 2' }],
+}
 
 test('should return the initial state', () => {
-    expect(reducer(undefined, { type: undefined })).toEqual({ profiles: [{ id: 1, name: 'Profile 1' }], selectedProfileID: 1 })
+    expect(reducer(undefined, { type: undefined })).toEqual(initialState)
 })
 
 test('should handle add', () => {
-    expect(reducer({ profiles: [{ id: 1, name: 'Profile 1' }], selectedProfileID: 1 }, add({ id: 2, name: 'Profile 2' }))).toEqual({
+    expect(reducer(initialState, add({ id: 2, name: 'Profile 2' }))).toEqual({
+        ...initialState,
         profiles: [{ id: 2, name: 'Profile 2' }, { id: 1, name: 'Profile 1' }],
         selectedProfileID: 2,
     })
 })
 
 test('should handle update', () => {
-    expect(reducer({ profiles: [{ id: 1, name: 'Profile 1' }], selectedProfileID: 1 }, update({ id: 1, name: 'Profile 2' }))).toEqual({
+    expect(reducer(initialState, update({ id: 1, name: 'Profile 2' }))).toEqual({
+        ...initialState,
         profiles: [{ id: 1, name: 'Profile 2' }],
-        selectedProfileID: 1,
     })
 })
 
 test('should handle remove', () => {
-    expect(reducer({ profiles: [{ id: 1, name: 'Profile 1' }, { id: 2, name: 'Profile 2' }], selectedProfileID: 2 }, remove(2))).toEqual({
-        profiles: [{ id: 1, name: 'Profile 1' }],
-        selectedProfileID: 1,
-    })
+    expect(reducer(initialStateWithMultipleProfiles, remove(2))).toEqual(initialState)
 })
 
 test('should handle remove with only one profile', () => {
-    expect(reducer({ profiles: [{ id: 1, name: 'Profile 1' }], selectedProfileID: 1 }, remove(1))).toEqual({
-        profiles: [{ id: 1, name: 'Profile 1' }],
-        selectedProfileID: 1,
-    })
+    expect(reducer(initialState, remove(1))).toEqual(initialState)
 })
 
 test('should handle select profile', () => {
-    expect(reducer({ profiles: [{ id: 1, name: 'Profile 1' }, { id: 2, name: 'Profile 2' }], selectedProfileID: 2 }, selectProfile(1))).toEqual({
-        profiles: [{ id: 1, name: 'Profile 1' }, { id: 2, name: 'Profile 2' }],
-        selectedProfileID: 1,
+    expect(reducer(initialStateWithMultipleProfiles, selectProfile(2))).toEqual({
+        ...initialStateWithMultipleProfiles,
+        selectedProfileID: 2,
+    })
+})
+
+test('should handle set rename', () => {
+    expect(reducer(initialState, setRename(true))).toEqual({
+        ...initialState,
+        rename: true,
+    })
+})
+
+test('should handle set rename text', () => {
+    expect(reducer(initialState, setRenameText('Profile 2'))).toEqual({
+        ...initialState,
+        renameText: 'Profile 2',
     })
 })
