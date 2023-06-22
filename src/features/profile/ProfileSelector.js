@@ -50,11 +50,23 @@ const ProfileSelector = () => {
             <label htmlFor="profile">Profile: </label>
 
             {!rename && (
-                <select name="profile" id="profile" value={selectedProfileID} onChange={e => dispatch(selectProfile(e.target.value))}>
-                    {profiles.map(profile => (
-                        <option key={profile.id} value={profile.id}>{profile.name}</option>
-                    ))}
-                </select>
+                <>
+                    <select name="profile" id="profile" value={selectedProfileID} onChange={e => dispatch(selectProfile(e.target.value))}>
+                        {profiles.map(profile => (
+                            <option key={profile.id} value={profile.id}>{profile.name}</option>
+                        ))}
+                    </select>
+
+                    <div className="dropdown inline-block ml-3">
+                        <button data-testid="option-button" className='bg-white px-1'><FontAwesomeIcon icon={faEllipsis} /></button>
+                        <div className="dropdown-options hidden absolute bg-white">
+                            <button className='px-1' onClick={addProfile}>Add</button><br />
+                            <button className='px-1' onClick={onClickRename}>Rename</button><br />
+                            <button className='px-1' onClick={duplicateProfile}>Duplicate</button><br />
+                            <button className='px-1' onClick={deleteProfile}>Delete</button>
+                        </div>
+                    </div>
+                </>
             )}
 
             {rename && (
@@ -64,15 +76,7 @@ const ProfileSelector = () => {
                 </>
             )}  
             
-            <div className="dropdown inline-block ml-3">
-                <button data-testid="option-button" className='bg-white px-1'><FontAwesomeIcon icon={faEllipsis} /></button>
-                <div className="dropdown-options hidden absolute bg-white">
-                    <button className='px-1' onClick={addProfile}>Add</button><br />
-                    <button className='px-1' onClick={onClickRename}>Rename</button><br />
-                    <button className='px-1' onClick={duplicateProfile}>Duplicate</button><br />
-                    <button className='px-1' onClick={deleteProfile}>Delete</button>
-                </div>
-            </div>
+            
         </div>
     )
 }
